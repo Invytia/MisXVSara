@@ -125,20 +125,47 @@
 
         .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; }
 
-        /* --- SELLO SIN FONDO MEDIANTE CSS --- */
+        /* --- SELLO DE CERA CSS PURO (PREMIUM EMBOSS) --- */
         .wax-seal {
-            position: absolute; top: 95px; left: 50%; transform: translateX(-50%);
-            width: 80px; height: 80px; z-index: 5;
+            position: absolute; top: 85px; left: 50%; transform: translateX(-50%);
+            width: 85px; height: 85px; z-index: 5;
             display: flex; justify-content: center; align-items: center;
             transition: opacity 0.5s ease 0.1s, transform 0.5s ease;
         }
         
-        .wax-seal img { 
-            width: 100%; height: 100%; object-fit: contain; 
-            /* Esta propiedad elimina el color blanco puro de la imagen, volviéndolo transparente */
-            mix-blend-mode: multiply; 
-            filter: contrast(1.15) brightness(0.9);
+        .wax-seal-css {
+            width: 100%; height: 100%;
+            /* Borde irregular orgánico de la cera */
+            border-radius: 46% 54% 50% 50% / 54% 48% 52% 46%;
+            /* Color palo de rosa oscuro con degradado para volumen */
+            background: radial-gradient(circle at 35% 35%, #C28F8E 0%, #9A6665 40%, #5c3838 100%);
+            box-shadow: 
+                2px 5px 8px rgba(0,0,0,0.4), /* Sombra proyectada */
+                inset 2px 2px 5px rgba(255,255,255,0.4), /* Brillo superior */
+                inset -2px -3px 5px rgba(0,0,0,0.5); /* Sombra interna inferior */
+            display: flex; justify-content: center; align-items: center;
+            
+            /* Tipografía y efecto de grabado hundido */
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: #9A6665; 
+            text-shadow: 
+                1px 1px 1px rgba(255,255,255,0.4), 
+                -1px -1px 1px rgba(0,0,0,0.6);
+            position: relative;
         }
+
+        /* Anillo interno del sello */
+        .wax-seal-css::before {
+            content: ''; position: absolute;
+            width: 75%; height: 75%; border-radius: 50%;
+            border: 1.5px solid rgba(0,0,0,0.1);
+            box-shadow: 
+                inset 1px 1px 3px rgba(0,0,0,0.4),
+                inset -1px -1px 3px rgba(255,255,255,0.2);
+        }
+
         .envelope-wrapper.open .wax-seal { opacity: 0; transform: translateX(-50%) scale(0.5); pointer-events: none; }
 
         .hint-text {
@@ -357,7 +384,6 @@
             .env-title { font-size: 80px; }
             .title-script { font-size: 85px; }
             .section-block { padding: 65px 15px; }
-            /* Secciones aún más unidas en móvil */
             .overlap-section { margin-top: -30px; border-radius: 30px 30px 0 0; }
             .info-data { font-size: 30px; }
             .map-box { height: 260px; border-width: 4px; }
@@ -391,9 +417,12 @@
 
         <div class="envelope-wrapper" onclick="openEnvelope()">
             <div class="front-flap"></div>
+            
+            <!-- SELLO DE CERA CSS -->
             <div class="wax-seal">
-                <img src="assets/sello.png" alt="Sello" onerror="this.style.display='none'">
+                <div class="wax-seal-css">S</div>
             </div>
+
             <div class="envelope"></div>
         </div>
         

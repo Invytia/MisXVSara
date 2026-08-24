@@ -11,6 +11,8 @@
             --bg-dusty-rose: #CD8E95; 
             --text-white: #FFFFFF;
             --border-light: rgba(255, 255, 255, 0.4);
+            --accent-gold: #D4AF37;
+            --gold-shine: #FFDF73;
             
             --transition-smooth: cubic-bezier(0.25, 1, 0.2, 1);
         }
@@ -19,14 +21,14 @@
 
         body, html {
             width: 100%; font-family: 'Montserrat', sans-serif;
-            /* Fondo con color base y textura de "pintura/acuarela" generada por CSS */
             background-color: var(--bg-dusty-rose);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            /* Textura sutil estilo pintura/acuarela */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             color: var(--text-white);
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* --- POLVO DE HADAS INICIAL --- */
+        /* --- POLVO DE HADAS Y GLITTER DORADO --- */
         #fairy-dust {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 100; display: none; overflow: hidden;
@@ -40,11 +42,26 @@
             animation: floatSparkle infinite linear; opacity: 0;
         }
 
+        /* Glitters sutiles dorados en el fondo */
+        .glitter-particle {
+            position: absolute; width: 3px; height: 3px;
+            background-color: var(--gold-shine); border-radius: 50%;
+            box-shadow: 0 0 6px var(--gold-shine), 0 0 2px #FFF;
+            opacity: 0; z-index: 1; pointer-events: none;
+            animation: twinkleGlitter infinite alternate ease-in-out;
+        }
+
         @keyframes floatSparkle {
             0% { transform: translateY(110vh) scale(0.3) rotate(0deg); opacity: 0; }
             20% { opacity: 0.7; transform: scale(1) rotate(45deg); }
             80% { opacity: 0.7; transform: scale(1.3) rotate(90deg); }
             100% { transform: translateY(-10vh) scale(0.5) rotate(180deg); opacity: 0; }
+        }
+
+        @keyframes twinkleGlitter {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(0.5); }
         }
 
         /* --- REPRODUCTOR DE MÚSICA --- */
@@ -73,7 +90,7 @@
         .envelope-text-container { text-align: center; margin-bottom: 50px; animation: floatText 4s ease-in-out infinite; z-index: 10; }
         
         .env-tag { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: var(--text-white); opacity: 0.9; }
-        .env-title { font-family: 'Great Vibes', cursive; font-size: 120px; color: var(--text-white); line-height: 1; margin-top: 10px; font-weight: 400; text-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .env-title { font-family: 'Great Vibes', cursive; font-size: 130px; color: var(--text-white); line-height: 1; margin-top: 10px; font-weight: 400; text-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         .envelope-wrapper { position: relative; cursor: pointer; transition: transform 0.6s var(--transition-smooth); z-index: 10; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
         .envelope-wrapper:hover { transform: translateY(-10px) scale(1.02); }
@@ -121,6 +138,7 @@
             display: none; width: 100%; min-height: 100vh; padding: 20px;
             flex-direction: column; align-items: center;
             opacity: 0; animation: fadeInMain 2.5s forwards 0.5s; position: relative; z-index: 2;
+            overflow: hidden; /* Evita scrolls accidentales por el glitter o flores */
         }
         body.content-active #main-invitation { display: flex; }
         @keyframes fadeInMain { to { opacity: 1; } }
@@ -129,44 +147,45 @@
         .outer-frame {
             width: 100%; max-width: 800px;
             border: 1px solid var(--border-light);
-            padding: 4px;
-            position: relative;
+            padding: 4px; position: relative; z-index: 2;
         }
         .inner-frame {
             width: 100%; height: 100%;
             border: 1px solid var(--border-light);
-            padding: 80px 20px;
-            position: relative;
+            padding: 80px 20px; position: relative;
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            overflow: hidden; /* Mantiene las flores dentro del borde */
+            /* Se eliminó el overflow hidden para no cortar los textos largos y elegantes */
         }
 
-        /* --- FLORES CON FILTRO BLANCO --- */
-        /* El filtro convierte las flores y los íconos de colores a siluetas blancas suaves, imitando la referencia */
-        .white-silhouette {
-            filter: brightness(0) invert(1) opacity(0.5);
-            pointer-events: none; z-index: 1;
-        }
+        /* --- FLORES A COLOR (SIN FILTRO BLANCO) --- */
         .floral-decor {
-            position: absolute; width: 220px; transition: all 1.5s var(--transition-smooth);
+            position: absolute; width: 220px; z-index: 1; pointer-events: none;
+            opacity: 0.95; filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+            animation: floatFlower 6s ease-in-out infinite alternate;
         }
         .floral-decor img { width: 100%; height: auto; object-fit: contain; }
         
-        .floral-top-left { top: -20px; left: -20px; transform: rotate(-10deg); }
-        .floral-bottom-right { bottom: -20px; right: -20px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
-        .floral-middle-right { top: 45%; right: -50px; transform: rotate(45deg); width: 180px; }
-        .floral-bottom-left { bottom: 10%; left: -30px; transform: rotate(-30deg) scaleX(-1); width: 180px; }
+        @keyframes floatFlower {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        /* Posiciones de las flores */
+        .floral-top-left { top: -40px; left: -40px; transform: rotate(-10deg); }
+        .floral-bottom-right { bottom: -40px; right: -40px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
+        .floral-middle-right { top: 40%; right: -60px; transform: rotate(45deg); width: 180px; }
+        .floral-bottom-left { bottom: 8%; left: -40px; transform: rotate(-30deg) scaleX(-1); width: 190px; }
 
         /* Clases de Animación Dinámica */
-        .anim-element { opacity: 0; transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; z-index: 2; }
+        .anim-element { opacity: 0; transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; z-index: 3; }
         .anim-fade-up { transform: translateY(40px); }
         .anim-fade-up.in-view { opacity: 1; transform: translateY(0); }
         .anim-zoom { transform: scale(0.95); }
         .anim-zoom.in-view { opacity: 1; transform: scale(1); }
 
-        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.25s; }
+        .delay-3 { transition-delay: 0.4s; } .delay-4 { transition-delay: 0.55s; }
+        .delay-5 { transition-delay: 0.7s; }
 
         /* --- TIPOGRAFÍA Y ESTILOS LIMPIOS --- */
         .tag-line { 
@@ -175,24 +194,33 @@
             margin-bottom: 15px; opacity: 0.9;
         }
 
-        /* Composición del XV Años superpuesto */
+        /* Composición del XV Años superpuesto (Ajustado) */
         .hero-title-container {
-            position: relative; margin: 40px 0 60px 0; width: 100%; display: flex; justify-content: center;
+            display: flex; flex-direction: column; align-items: center;
+            margin: 30px 0 20px 0; width: 100%;
         }
         .hero-xv {
-            font-family: 'Cinzel', serif; font-size: 160px; font-weight: 400; line-height: 0.8; 
-            color: var(--text-white); letter-spacing: -5px;
+            font-family: 'Cinzel', serif; font-size: 160px; font-weight: 400; line-height: 1; 
+            color: var(--text-white); letter-spacing: -2px; z-index: 2;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .hero-anos {
-            font-family: 'Great Vibes', cursive; font-size: 110px; color: var(--text-white); 
-            position: absolute; top: 60%; left: 50%; transform: translate(-50%, -15%);
-            text-shadow: 0 4px 15px rgba(205, 142, 149, 0.8); /* Sombra del color de fondo para separar las letras */
+            font-family: 'Great Vibes', cursive; font-size: 120px; color: var(--text-white); 
+            margin-top: -65px; z-index: 3; /* Margen negativo controlado en lugar de position absolute */
+            text-shadow: 0 4px 15px rgba(205, 142, 149, 0.8); 
+            padding: 0 20px; /* Evita recortes laterales */
+        }
+        
+        .main-name {
+            font-family: 'Cinzel', serif; font-size: 42px; font-weight: 500; 
+            letter-spacing: 6px; margin: 40px 0 10px 0; color: var(--text-white);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.1); line-height: 1.2;
         }
 
-        .title-script { font-family: 'Great Vibes', cursive; font-size: 65px; font-weight: 400; margin: 15px 0; }
-        .subtitle-serif { font-family: 'Cinzel', serif; font-size: 38px; font-weight: 400; letter-spacing: 2px; }
+        .title-script { font-family: 'Great Vibes', cursive; font-size: 70px; font-weight: 400; margin: 15px 0; padding: 0 20px; }
+        .subtitle-serif { font-family: 'Cinzel', serif; font-size: 38px; font-weight: 400; letter-spacing: 2px; padding: 0 15px; }
 
-        .body-text { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; max-width: 500px; margin: 0 auto; }
+        .body-text { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; max-width: 500px; margin: 0 auto; padding: 0 15px; }
         
         .date-container {
             display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0;
@@ -200,22 +228,23 @@
         }
         .date-number { font-family: 'Cinzel', serif; font-size: 55px; font-weight: 400; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); padding: 0 25px; line-height: 1; }
 
-        /* Separadores simples */
-        .divider-simple { 
-            width: 40%; height: 1px; background-color: var(--border-light); 
-            margin: 50px auto; position: relative; 
+        /* --- FLORITURAS ELEGANTES (Separadores) --- */
+        .flourish-divider {
+            width: 100%; display: flex; justify-content: center; margin: 60px 0;
         }
-        .divider-heart::after {
-            content: '♡'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -55%);
-            background: var(--bg-dusty-rose); padding: 0 15px; color: var(--text-white); font-size: 18px;
+        .flourish-svg {
+            width: 180px; fill: var(--border-light);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
         }
 
-        /* --- ÍCONOS CUSTOM PNG CON FILTRO BLANCO --- */
+        /* --- ÍCONOS CUSTOM PNG (Mantiene color original y resalta hermoso) --- */
         .section-icon-img {
-            height: 60px; width: auto; margin-bottom: 20px; object-fit: contain;
+            height: 65px; width: auto; margin-bottom: 20px; object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
         }
         .dresscode-icon-img {
-            height: 50px; width: auto; margin-bottom: 15px; object-fit: contain;
+            height: 55px; width: auto; margin-bottom: 15px; object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
         }
 
         /* --- BOTONES ELEGANTES --- */
@@ -226,8 +255,9 @@
             font-weight: 400; letter-spacing: 5px; text-transform: uppercase;
             text-decoration: none; border: 1px solid var(--text-white); border-radius: 0;
             transition: all 0.4s ease; margin-top: 25px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .btn-outline:hover { background: var(--text-white); color: var(--bg-dusty-rose); }
+        .btn-outline:hover { background: var(--text-white); color: var(--bg-dusty-rose); transform: translateY(-3px); }
         .btn-outline svg { fill: currentColor; width: 18px; height: 18px; margin-right: 10px; }
 
         /* --- FORMULARIOS RSVP LIMPIOS --- */
@@ -242,10 +272,9 @@
             text-align: center; transition: all 0.4s;
         }
         .input-line:focus { border-color: var(--text-white); background: rgba(255,255,255,0.1); }
-        .input-line::placeholder { color: rgba(255, 255, 255, 0.6); font-style: normal; }
+        .input-line::placeholder { color: rgba(255, 255, 255, 0.7); font-style: normal; }
         textarea.input-line { resize: vertical; min-height: 100px; }
         select.input-line { appearance: none; text-align-last: center; cursor: pointer; }
-        /* Opciones del select en modo claro para que se lean al abrirlas en móvil/pc */
         select.input-line option { color: #000; background: #FFF; } 
 
         /* Pie de página */
@@ -259,12 +288,14 @@
         @media (max-width: 480px) {
             #main-invitation { padding: 10px; }
             .outer-frame { padding: 3px; }
-            .inner-frame { padding: 60px 15px; }
-            .floral-decor { width: 150px; }
+            .inner-frame { padding: 50px 10px; } /* Menos padding en móviles para ganar espacio */
+            .floral-decor { width: 140px; }
             
             .hero-xv { font-size: 130px; }
-            .hero-anos { font-size: 90px; }
-            .subtitle-serif { font-size: 32px; }
+            .hero-anos { font-size: 95px; margin-top: -50px; }
+            .main-name { font-size: 32px; letter-spacing: 4px; }
+            .subtitle-serif { font-size: 30px; }
+            .title-script { font-size: 60px; }
             
             .date-container { flex-direction: column; gap: 10px; }
             .date-number { border-left: none; border-right: none; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 15px 0; width: 100%; }
@@ -272,14 +303,12 @@
             .envelope { width: 300px; height: 195px; }
             .envelope::before, .envelope::after { border-left-width: 150px; border-top-width: 97px; border-bottom-width: 97px; }
             .front-flap { border-left-width: 150px; border-right-width: 150px; border-top-width: 105px; }
-            
-            .map-box { height: 280px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- POLVO DE HADAS ANIMADO SUPERIOR -->
+    <!-- POLVO DE HADAS INICIAL -->
     <div id="fairy-dust"></div>
 
     <audio id="bg-music" src="assets/song.mp3" loop></audio>
@@ -309,24 +338,28 @@
         <div class="outer-frame">
             <div class="inner-frame">
 
-                <!-- FLORES EN LAS ESQUINAS (Se filtran a blanco por CSS) -->
-                <div class="floral-decor floral-top-left white-silhouette"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-bottom-right white-silhouette"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-middle-right white-silhouette"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-bottom-left white-silhouette"><img src="assets/flores.png" alt=""></div>
+                <!-- FLORES A COLOR EN LAS ESQUINAS -->
+                <div class="floral-decor floral-top-left"><img src="assets/flores.png" alt=""></div>
+                <div class="floral-decor floral-bottom-right"><img src="assets/flores.png" alt=""></div>
+                <div class="floral-decor floral-middle-right"><img src="assets/flores.png" alt=""></div>
+                <div class="floral-decor floral-bottom-left"><img src="assets/flores.png" alt=""></div>
 
                 <!-- PORTADA HERO -->
-                <div class="anim-element anim-fade-up delay-1 tag-line" style="margin-top: 40px;">Estás invitado a celebrar mis</div>
+                <div class="anim-element anim-fade-up delay-1 tag-line" style="margin-top: 30px;">Estás invitado a celebrar mis</div>
                 
                 <div class="anim-element anim-zoom delay-2 hero-title-container">
                     <div class="hero-xv">XV</div>
                     <div class="hero-anos">Años</div>
-                    <div style="position: absolute; right: 15%; bottom: -5px; font-size: 30px; font-family: sans-serif; font-weight: 100;">♡</div>
                 </div>
 
-                <div class="divider-simple divider-heart anim-element anim-fade-up delay-3"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-3" style="margin: 20px 0;">
+                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
                 
-                <div class="anim-element anim-fade-up delay-3 tag-line" style="font-weight: 400; letter-spacing: 6px; font-size: 16px;">SARA REBECA</div>
+                <h2 class="anim-element anim-zoom delay-4 main-name">SARA REBECA</h2>
 
                 <div class="anim-element anim-zoom delay-4 date-container">
                     <span>Sábado</span>
@@ -343,7 +376,12 @@
                 <div class="anim-element anim-zoom delay-5 title-script" style="margin-top: 40px;">¡Te espero!</div>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1" style="margin-top: 80px;"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- PADRES Y PADRINOS -->
@@ -357,12 +395,17 @@
                 <div class="anim-element anim-zoom delay-5 subtitle-serif">Melisa Mireles</div>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- CEREMONIA -->
                 <div class="anim-element anim-zoom delay-1">
-                    <img src="assets/iconoiglesia.png" alt="Ceremonia" class="section-icon-img white-silhouette">
+                    <img src="assets/iconoiglesia.png" alt="Ceremonia" class="section-icon-img">
                 </div>
                 <div class="anim-element anim-fade-up delay-2 tag-line">Ceremonia Religiosa</div>
                 <div class="anim-element anim-zoom delay-3 subtitle-serif" style="font-size: 32px; margin-bottom: 10px;">Hacienda San Fernando</div>
@@ -372,12 +415,17 @@
                 <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="anim-element anim-fade-up delay-5 btn-outline">Cómo Llegar</a>
 
 
-                <div class="divider-simple divider-heart anim-element anim-fade-up delay-1" style="width: 20%; margin: 60px auto;"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- RECEPCIÓN -->
                 <div class="anim-element anim-zoom delay-1">
-                    <img src="assets/iconosalon.png" alt="Recepción" class="section-icon-img white-silhouette">
+                    <img src="assets/iconosalon.png" alt="Recepción" class="section-icon-img">
                 </div>
                 <div class="anim-element anim-fade-up delay-2 tag-line">Recepción</div>
                 <div class="anim-element anim-zoom delay-3 subtitle-serif" style="font-size: 32px; margin-bottom: 10px;">Hacienda San Fernando</div>
@@ -387,7 +435,12 @@
                 <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="anim-element anim-fade-up delay-5 btn-outline">Cómo Llegar</a>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- DRESS CODE -->
@@ -398,14 +451,14 @@
                 <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 40px;">
                     <!-- Damas -->
                     <div class="anim-element anim-fade-up delay-4" style="text-align: center; width: 100%;">
-                        <img src="assets/iconovestido.png" alt="Damas" class="dresscode-icon-img white-silhouette">
+                        <img src="assets/iconovestido.png" alt="Damas" class="dresscode-icon-img">
                         <div class="tag-line" style="font-size: 11px;">DAMAS</div>
                         <p class="body-text">Vestido largo de noche</p>
                     </div>
                     
                     <!-- Caballeros -->
                     <div class="anim-element anim-fade-up delay-5" style="text-align: center; width: 100%;">
-                        <img src="assets/iconomoño.png" alt="Caballeros" class="dresscode-icon-img white-silhouette">
+                        <img src="assets/iconomoño.png" alt="Caballeros" class="dresscode-icon-img">
                         <div class="tag-line" style="font-size: 11px;">CABALLEROS</div>
                         <p class="body-text">Smoking negro, camisa formal, moño negro.</p>
                     </div>
@@ -417,19 +470,28 @@
                 </div>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- PLAYLIST Y GALERÍA -->
                 <div class="anim-element anim-fade-up delay-1 tag-line">Nuestra Música</div>
                 <div class="anim-element anim-zoom delay-2 subtitle-serif" style="font-size: 32px; margin-bottom: 15px;">La Playlist</div>
                 <p class="anim-element anim-fade-up delay-3 body-text" style="margin-bottom: 30px;">Agrega tus canciones favoritas.</p>
-                <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 400px; position: relative; z-index: 2;">
-                    <!-- Agregué un poco de transparencia a la playlist para adaptarla al diseño -->
+                <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 400px; position: relative; z-index: 4;">
                     <iframe data-testid="embed-iframe" style="border-radius:0; border: 1px solid var(--border-light);" src="https://open.spotify.com/embed/playlist/12Dw89XiWepF4u7OPFa9uC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
 
-                <div class="divider-simple divider-heart anim-element anim-fade-up delay-1" style="width: 20%; margin: 60px auto;"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
                 <div class="anim-element anim-fade-up delay-1 tag-line">Captura el Momento</div>
                 <div class="anim-element anim-zoom delay-2 subtitle-serif" style="font-size: 32px; margin-bottom: 15px;">Galería en Vivo</div>
@@ -437,7 +499,12 @@
                 <a href="https://drive.google.com/drive/folders/1VEQcqbNiQm_IMAySezv380PLMESiXkPu?usp=sharing" target="_blank" class="anim-element anim-fade-up delay-4 btn-outline">Subir Fotos</a>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- AVISO ADULTOS -->
@@ -493,7 +560,12 @@
                 </div>
 
 
-                <div class="divider-simple anim-element anim-fade-up delay-1"></div>
+                <div class="flourish-divider anim-element anim-fade-up delay-1">
+                    <svg viewBox="0 0 250 30" class="flourish-svg">
+                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
+                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
+                    </svg>
+                </div>
 
 
                 <!-- LIBRO DE FIRMAS -->
@@ -540,10 +612,11 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
-        // --- SISTEMA DE POLVO DE HADAS ---
+        // --- SISTEMA DE POLVO DE HADAS Y GLITTER DORADO ---
         function createFairyDust() {
+            // Polvo de hadas del sobre (se apaga luego de un rato)
             const container = document.getElementById('fairy-dust');
-            const particleCount = 45; 
+            const particleCount = 35; 
             for (let i = 0; i < particleCount; i++) {
                 let particle = document.createElement('div');
                 particle.classList.add('sparkle');
@@ -555,10 +628,21 @@
                 particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
                 container.appendChild(particle);
             }
-            // Para el diseño limpio, removemos el polvo de hadas después de 6 segundos 
-            // para dejar el lienzo de textura completamente limpio.
-            setTimeout(() => { container.style.opacity = '0'; transition = 'opacity 2s ease'; }, 6000);
-            setTimeout(() => { container.style.display = 'none'; }, 8000);
+            
+            setTimeout(() => { container.style.opacity = '0'; container.style.transition = 'opacity 2s ease'; }, 5000);
+            setTimeout(() => { container.style.display = 'none'; }, 7000);
+
+            // Glitter constante en el fondo de la invitación
+            const mainContainer = document.querySelector('.inner-frame');
+            for (let i = 0; i < 40; i++) {
+                let glitter = document.createElement('div');
+                glitter.classList.add('glitter-particle');
+                glitter.style.left = Math.random() * 100 + '%';
+                glitter.style.top = Math.random() * 100 + '%';
+                glitter.style.animationDelay = Math.random() * 6 + 's';
+                glitter.style.animationDuration = Math.random() * 3 + 2 + 's';
+                mainContainer.appendChild(glitter);
+            }
         }
 
         // --- ANIMACIÓN INICIAL DEL SOBRE ---

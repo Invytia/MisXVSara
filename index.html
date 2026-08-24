@@ -143,7 +143,7 @@
         body.content-active #main-invitation { display: flex; }
         @keyframes fadeInMain { to { opacity: 1; } }
 
-        /* Marco Adaptativo para móviles */
+        /* Marco Adaptativo */
         .outer-frame {
             width: 100%; max-width: 800px; height: auto; min-height: 95vh; margin: 0 auto;
             border: 1px solid var(--border-light); padding: 6px; position: relative; z-index: 2;
@@ -155,7 +155,7 @@
             display: flex; flex-direction: column; align-items: center; text-align: center;
         }
 
-        /* --- FLORES FLOTANTES (Separadas del texto) --- */
+        /* --- FLORES FLOTANTES --- */
         .floral-decor {
             position: absolute; width: 45vw; max-width: 250px; z-index: 1; pointer-events: none;
             opacity: 0.9; filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
@@ -164,13 +164,12 @@
         .floral-decor img { width: 100%; height: auto; object-fit: contain; }
         @keyframes floatFlower { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-12px) rotate(3deg); } }
 
-        /* Se movió la flor más a la izquierda y arriba para no tapar */
         .floral-top-left { top: -20px; left: -70px; transform: rotate(-15deg); }
         .floral-bottom-right { bottom: -30px; right: -30px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
         .floral-middle-right { top: 35%; right: -40px; transform: rotate(45deg); }
         .floral-bottom-left { bottom: 10%; left: -30px; transform: rotate(-30deg) scaleX(-1); }
 
-        /* --- ANIMACIONES AL SCROLLEAR --- */
+        /* --- ANIMACIONES --- */
         .anim-element { opacity: 0; transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; z-index: 3; }
         .anim-fade-up { transform: translateY(30px); }
         .anim-fade-up.in-view { opacity: 1; transform: translateY(0); }
@@ -180,13 +179,12 @@
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
 
-        /* --- TIPOGRAFÍA ESTANDARIZADA Y ENGRANDECIDA --- */
+        /* --- TIPOGRAFÍA --- */
         .tag-line { 
             font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; 
             letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; opacity: 0.95;
         }
 
-        /* Composición Hero Más Grande */
         .hero-title-container {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             margin: 30px 0 20px 0; width: 100%;
@@ -210,14 +208,13 @@
         .subtitle-serif { font-family: 'Cinzel', serif; font-size: 34px; font-weight: 400; letter-spacing: 2px; padding: 0 10px; }
         .body-text { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.7; max-width: 500px; margin: 0 auto; padding: 0 15px; }
         
-        /* Contenedor Fecha */
         .date-container {
             display: flex; align-items: center; justify-content: center; gap: 15px; margin: 40px 0;
             font-family: 'Montserrat', sans-serif; font-weight: 300; text-transform: uppercase; letter-spacing: 4px; font-size: 12px;
         }
         .date-number { font-family: 'Cinzel', serif; font-size: 50px; font-weight: 400; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); padding: 0 25px; line-height: 1; }
 
-        /* --- DIVISORES PREMIUM CON DIAMANTE GEOMÉTRICO DORADO --- */
+        /* --- DIVISORES CON DIAMANTE GEOMÉTRICO DORADO --- */
         .elegant-divider {
             display: flex; align-items: center; justify-content: center;
             width: 80%; max-width: 300px; margin: 55px auto; opacity: 0.9;
@@ -225,15 +222,14 @@
         .elegant-divider::before, .elegant-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-light); }
         .elegant-divider::before { margin-right: 15px; } .elegant-divider::after { margin-left: 15px; }
         
-        /* Diamante Geométrico para evitar emojis rojos en iOS/Mac */
         .divider-icon { 
             color: var(--accent-gold); font-size: 16px; 
             text-shadow: 0 0 8px rgba(255, 223, 115, 0.4); 
-            font-family: "Arial", sans-serif; /* Fuerza fuente sin emojis */
+            font-family: "Arial", sans-serif;
         }
         .divider-icon.heart { font-size: 18px; color: var(--text-white); text-shadow: none; }
 
-        /* --- GLASS CARD Y WIDGET DE CALENDARIO --- */
+        /* --- GLASS CARD --- */
         .glass-card {
             background: var(--glass-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.25); border-radius: 4px;
@@ -247,9 +243,17 @@
         .cal-day { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; display: flex; justify-content: center; align-items: center; aspect-ratio: 1; }
         .cal-day.active { background: var(--text-white); color: var(--bg-dusty-rose); border-radius: 50%; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: scale(1.15); }
 
-        /* --- ÍCONOS CUSTOM PNG LIMPIOS (Sin sombra para que brille el oro) --- */
-        .section-icon-img { height: 75px; width: auto; margin-bottom: 20px; object-fit: contain; }
-        .dresscode-icon-img { height: 65px; width: auto; margin-bottom: 10px; object-fit: contain; }
+        /* --- ÍCONOS CUSTOM PNG LIMPIOS Y BLANCOS --- */
+        .section-icon-img { 
+            height: 75px; width: auto; margin-bottom: 20px; object-fit: contain; 
+            /* Se aplica filtro para volverlos blancos puros y mantener sombra suave */
+            filter: brightness(0) invert(1) drop-shadow(0 5px 10px rgba(0,0,0,0.15)); 
+        }
+        .dresscode-icon-img { 
+            height: 65px; width: auto; margin-bottom: 10px; object-fit: contain; 
+            /* Se aplica filtro para volverlos blancos puros y mantener sombra suave */
+            filter: brightness(0) invert(1) drop-shadow(0 5px 10px rgba(0,0,0,0.15)); 
+        }
 
         /* --- BOTONES ELEGANTES --- */
         .btn-outline {
@@ -269,7 +273,7 @@
         .input-line {
             width: 100%; padding: 18px 15px; background: rgba(255, 255, 255, 0.1); 
             border: 1px solid var(--border-light); border-radius: 2px; color: var(--text-white);
-            font-family: 'Montserrat', sans-serif; font-size: 16px; /* Evita auto-zoom en iOS */
+            font-family: 'Montserrat', sans-serif; font-size: 16px; 
             font-weight: 300; outline: none; text-align: center; transition: all 0.3s;
         }
         .input-line:focus { border-color: var(--text-white); background: rgba(255,255,255,0.2); }
@@ -287,7 +291,6 @@
         @media (max-width: 480px) {
             .inner-frame { padding: 50px 10px; }
             
-            /* Textos mucho más grandes en móvil */
             .hero-xv { font-size: 140px; }
             .hero-anos { font-size: 105px; margin-top: -35px; }
             .main-name { font-size: 44px; letter-spacing: 4px; }
@@ -295,7 +298,6 @@
             .title-script { font-size: 60px; }
             .subtitle-serif { font-size: 30px; }
             
-            /* Mueve el texto inicial más abajo para que la flor no lo tape */
             .tag-line.intro-text { margin-top: 60px; z-index: 10; position: relative; }
             .floral-top-left { left: -60px; top: -10px; }
             
@@ -437,7 +439,7 @@
                 <div class="anim-element anim-zoom delay-2 title-script" style="font-size: 75px; margin: 0;">Black Tie</div>
                 <div class="anim-element anim-fade-up delay-3 body-text" style="font-style: italic; margin-bottom: 40px;">Etiqueta rigurosa</div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; margin-bottom: 30px;">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; margin-bottom: 10px;">
                     <!-- Damas -->
                     <div class="anim-element anim-fade-up delay-4" style="text-align: center; width: 100%;">
                         <img src="assets/iconovestido.png" alt="Damas" class="dresscode-icon-img">
@@ -452,9 +454,10 @@
                     </div>
                 </div>
 
-                <div class="anim-element anim-zoom delay-5 glass-card" style="padding: 25px 15px; border-style: dashed; max-width: 400px;">
+                <!-- Aviso Exclusivo Quinceañera (Sin caja, libre e integrado) -->
+                <div class="anim-element anim-fade-up delay-5" style="margin-top: 20px; max-width: 450px; text-align: center;">
                     <div class="tag-line" style="font-size: 11px;">Exclusivo Quinceañera</div>
-                    <p class="body-text" style="font-size: 13px;">El color rosa en todas sus tonalidades está reservado de manera exclusiva para la quinceañera.</p>
+                    <p class="body-text" style="font-style: italic;">El color rosa en todas sus tonalidades está reservado de manera exclusiva para la quinceañera.</p>
                 </div>
 
 

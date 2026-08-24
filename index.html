@@ -155,20 +155,6 @@
             display: flex; flex-direction: column; align-items: center; text-align: center;
         }
 
-        /* --- FLORES FLOTANTES --- */
-        .floral-decor {
-            position: absolute; width: 45vw; max-width: 250px; z-index: 1; pointer-events: none;
-            opacity: 0.9; filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
-            animation: floatFlower 6s ease-in-out infinite alternate;
-        }
-        .floral-decor img { width: 100%; height: auto; object-fit: contain; }
-        @keyframes floatFlower { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-12px) rotate(3deg); } }
-
-        .floral-top-left { top: -20px; left: -70px; transform: rotate(-15deg); }
-        .floral-bottom-right { bottom: -30px; right: -30px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
-        .floral-middle-right { top: 35%; right: -40px; transform: rotate(45deg); }
-        .floral-bottom-left { bottom: 10%; left: -30px; transform: rotate(-30deg) scaleX(-1); }
-
         /* --- ANIMACIONES --- */
         .anim-element { opacity: 0; transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; z-index: 3; }
         .anim-fade-up { transform: translateY(30px); }
@@ -296,8 +282,7 @@
             .title-script { font-size: 60px; }
             .subtitle-serif { font-size: 30px; }
             
-            .tag-line.intro-text { margin-top: 60px; z-index: 10; position: relative; }
-            .floral-top-left { left: -60px; top: -10px; }
+            .tag-line.intro-text { margin-top: 50px; z-index: 10; position: relative; }
             
             .date-container { flex-direction: column; gap: 8px; margin: 25px 0; }
             .date-number { border-left: none; border-right: none; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 12px 0; width: 100%; font-size: 45px; }
@@ -345,14 +330,8 @@
         <div class="outer-frame">
             <div class="inner-frame" id="glitter-container">
 
-                <!-- FLORES A COLOR EN LAS ESQUINAS -->
-                <div class="floral-decor floral-top-left"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-bottom-right"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-middle-right"><img src="assets/flores.png" alt=""></div>
-                <div class="floral-decor floral-bottom-left"><img src="assets/flores.png" alt=""></div>
-
                 <!-- PORTADA HERO -->
-                <div class="anim-element anim-fade-up delay-1 tag-line intro-text" style="margin-top: 70px;">Estás invitado a celebrar mis</div>
+                <div class="anim-element anim-fade-up delay-1 tag-line intro-text" style="margin-top: 50px;">Estás invitado a celebrar mis</div>
                 
                 <div class="anim-element anim-zoom delay-2 hero-title-container">
                     <div class="hero-xv">XV</div>
@@ -437,7 +416,7 @@
                 <div class="anim-element anim-zoom delay-2 title-script" style="font-size: 75px; margin: 0;">Black Tie</div>
                 <div class="anim-element anim-fade-up delay-3 body-text" style="font-style: italic; margin-bottom: 40px;">Etiqueta rigurosa</div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; margin-bottom: 30px;">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px; margin-bottom: 10px;">
                     <!-- Damas -->
                     <div class="anim-element anim-fade-up delay-4" style="text-align: center; width: 100%;">
                         <img src="assets/iconovestido.png" alt="Damas" class="dresscode-icon-img">
@@ -452,7 +431,7 @@
                     </div>
                 </div>
 
-                <!-- Aviso Exclusivo Quinceañera (Sin caja) -->
+                <!-- Aviso Exclusivo Quinceañera -->
                 <div class="anim-element anim-fade-up delay-5" style="margin-top: 20px; max-width: 450px; text-align: center;">
                     <div class="tag-line" style="font-size: 11px;">Exclusivo Quinceañera</div>
                     <p class="body-text" style="font-style: italic;">El color rosa en todas sus tonalidades está reservado de manera exclusiva para la quinceañera.</p>

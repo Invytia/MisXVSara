@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años - Sara</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Paleta Rosa Viejo (Dusty Rose) Limpio y Elegante */
             --bg-dusty-rose: #CD8E95; 
             --text-white: #FFFFFF;
             --border-light: rgba(255, 255, 255, 0.4);
-            --accent-gold: #D4AF37;
+            --glass-bg: rgba(255, 255, 255, 0.06);
             --gold-shine: #FFDF73;
             
             --transition-smooth: cubic-bezier(0.25, 1, 0.2, 1);
@@ -22,13 +22,15 @@
         body, html {
             width: 100%; font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-dusty-rose);
-            /* Textura sutil estilo pintura/acuarela */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            /* Gradiente sutil para profundidad + Textura elegante */
+            background-image: 
+                linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.05) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
             color: var(--text-white);
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* --- POLVO DE HADAS Y GLITTER DORADO --- */
+        /* --- POLVO DE HADAS Y GLITTER MEJORADO --- */
         #fairy-dust {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 100; display: none; overflow: hidden;
@@ -37,51 +39,50 @@
 
         .sparkle {
             position: absolute; border-radius: 50%;
-            background: radial-gradient(circle, #FFF 0%, rgba(255,255,255,0.5) 40%, transparent 70%);
-            box-shadow: 0 0 10px #FFF, 0 0 5px #FFF;
+            background: #FFF; box-shadow: 0 0 15px #FFF, 0 0 8px #FFF;
             animation: floatSparkle infinite linear; opacity: 0;
         }
 
-        /* Glitters sutiles dorados en el fondo */
+        /* Glitter más visible y hermoso */
         .glitter-particle {
-            position: absolute; width: 3px; height: 3px;
-            background-color: var(--gold-shine); border-radius: 50%;
-            box-shadow: 0 0 6px var(--gold-shine), 0 0 2px #FFF;
+            position: absolute; border-radius: 50%;
+            background-color: #FFF;
+            box-shadow: 0 0 12px 3px var(--gold-shine), 0 0 4px #FFF;
             opacity: 0; z-index: 1; pointer-events: none;
             animation: twinkleGlitter infinite alternate ease-in-out;
         }
 
         @keyframes floatSparkle {
-            0% { transform: translateY(110vh) scale(0.3) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.7; transform: scale(1) rotate(45deg); }
-            80% { opacity: 0.7; transform: scale(1.3) rotate(90deg); }
+            0% { transform: translateY(110vh) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; transform: scale(1.2) rotate(45deg); }
+            80% { opacity: 0.8; transform: scale(1.5) rotate(90deg); }
             100% { transform: translateY(-10vh) scale(0.5) rotate(180deg); opacity: 0; }
         }
 
         @keyframes twinkleGlitter {
-            0% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 0.8; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(0.5); }
+            0% { opacity: 0; transform: scale(0.6); }
+            50% { opacity: 0.9; transform: scale(1.6); }
+            100% { opacity: 0; transform: scale(0.6); }
         }
 
         /* --- REPRODUCTOR DE MÚSICA --- */
         .sticky-music-btn {
             position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 2000;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15); z-index: 2000;
             cursor: pointer; opacity: 0; visibility: hidden; border: 1px solid var(--border-light);
             transform: translateY(20px) scale(0.8); transition: all 0.6s var(--transition-smooth);
         }
         body.content-active .sticky-music-btn { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-        .sticky-music-btn:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.25); }
+        .sticky-music-btn:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.3); }
         .sticky-music-btn svg { width: 20px; height: 20px; fill: var(--text-white); }
 
         /* --- SOBRE INICIAL --- */
         #envelope-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--bg-dusty-rose);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
             z-index: 3000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1.2s ease-in-out, visibility 1.2s;
         }
@@ -89,23 +90,23 @@
 
         .envelope-text-container { text-align: center; margin-bottom: 50px; animation: floatText 4s ease-in-out infinite; z-index: 10; }
         
-        .env-tag { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: var(--text-white); opacity: 0.9; }
-        .env-title { font-family: 'Great Vibes', cursive; font-size: 130px; color: var(--text-white); line-height: 1; margin-top: 10px; font-weight: 400; text-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .env-tag { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: var(--text-white); opacity: 0.9; }
+        .env-title { font-family: 'Great Vibes', cursive; font-size: 130px; color: var(--text-white); line-height: 1; margin-top: 10px; font-weight: 400; text-shadow: 0 5px 15px rgba(0,0,0,0.15); }
 
-        .envelope-wrapper { position: relative; cursor: pointer; transition: transform 0.6s var(--transition-smooth); z-index: 10; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
+        .envelope-wrapper { position: relative; cursor: pointer; transition: transform 0.6s var(--transition-smooth); z-index: 10; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2)); }
         .envelope-wrapper:hover { transform: translateY(-10px) scale(1.02); }
         
         .envelope {
-            position: relative; width: 340px; height: 220px; background: rgba(255, 255, 255, 0.95);
+            position: relative; width: 340px; height: 220px; background: rgba(255, 255, 255, 0.98);
             border-radius: 4px; border: 1px solid rgba(255,255,255,0.4);
         }
-        .envelope::before { content: ''; position: absolute; top: 0; right: 0; border-right: 170px solid #F8F8F8; border-top: 110px solid transparent; border-bottom: 110px solid #F8F8F8; z-index: 2; border-radius: 0 4px 4px 0;}
+        .envelope::before { content: ''; position: absolute; top: 0; right: 0; border-right: 170px solid #F6F6F6; border-top: 110px solid transparent; border-bottom: 110px solid #F6F6F6; z-index: 2; border-radius: 0 4px 4px 0;}
         .envelope::after { content: ''; position: absolute; top: 0; left: 0; border-left: 170px solid #FFFFFF; border-top: 110px solid transparent; border-bottom: 110px solid #FFFFFF; z-index: 2; border-radius: 4px 0 0 4px; }
         
         .front-flap {
             position: absolute; top: 0; left: 0; border-left: 170px solid transparent; border-right: 170px solid transparent;
-            border-top: 120px solid #EAEAEA; transform-origin: top; transition: transform 1.2s var(--transition-smooth); z-index: 4;
-            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.05));
+            border-top: 120px solid #EDEDED; transform-origin: top; transition: transform 1.2s var(--transition-smooth); z-index: 4;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
         .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; }
 
@@ -118,65 +119,64 @@
             width: 100%; height: 100%;
             border-radius: 48% 52% 55% 45% / 54% 48% 52% 46%;
             background: var(--bg-dusty-rose);
-            box-shadow: 2px 4px 8px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -3px 4px rgba(0,0,0,0.2);
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.3), inset 2px 2px 5px rgba(255,255,255,0.5), inset -2px -3px 5px rgba(0,0,0,0.3);
             display: flex; justify-content: center; align-items: center;
             font-family: 'Cinzel', serif; font-size: 38px; font-weight: 500; color: var(--text-white);
             position: relative;
         }
         .wax-seal-css::before {
-            content: ''; position: absolute; width: 75%; height: 75%; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.4);
+            content: ''; position: absolute; width: 75%; height: 75%; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.5);
         }
         .envelope-wrapper.open .wax-seal { opacity: 0; transform: translateX(-50%) scale(0.5); pointer-events: none; }
 
-        .hint-text { text-align: center; font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: 5px; color: var(--text-white); margin-top: 50px; animation: pulse 2.5s infinite; opacity: 0.8; }
+        .hint-text { text-align: center; font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 6px; color: var(--text-white); margin-top: 50px; animation: pulse 2.5s infinite; opacity: 0.9; }
 
-        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 0.9; } 100% { opacity: 0.4; } }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
         @keyframes floatText { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
 
-        /* --- CONTENIDO PRINCIPAL Y MARCO LIMPIO --- */
+        /* --- CONTENIDO PRINCIPAL --- */
         #main-invitation {
-            display: none; width: 100%; min-height: 100vh; padding: 20px;
+            display: none; width: 100%; min-height: 100vh; padding: 25px;
             flex-direction: column; align-items: center;
             opacity: 0; animation: fadeInMain 2.5s forwards 0.5s; position: relative; z-index: 2;
-            overflow: hidden; /* Evita scrolls accidentales por el glitter o flores */
         }
         body.content-active #main-invitation { display: flex; }
         @keyframes fadeInMain { to { opacity: 1; } }
 
-        /* El marco doble estilo cuadro elegante */
+        /* Marco Premium */
         .outer-frame {
             width: 100%; max-width: 800px;
             border: 1px solid var(--border-light);
-            padding: 4px; position: relative; z-index: 2;
+            padding: 5px; position: relative; z-index: 2;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
         }
         .inner-frame {
             width: 100%; height: 100%;
             border: 1px solid var(--border-light);
             padding: 80px 20px; position: relative;
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            /* Se eliminó el overflow hidden para no cortar los textos largos y elegantes */
         }
 
-        /* --- FLORES A COLOR (SIN FILTRO BLANCO) --- */
+        /* --- FLORES A COLOR FLOTANTES --- */
         .floral-decor {
-            position: absolute; width: 220px; z-index: 1; pointer-events: none;
-            opacity: 0.95; filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
-            animation: floatFlower 6s ease-in-out infinite alternate;
+            position: absolute; width: 250px; z-index: 1; pointer-events: none;
+            opacity: 0.95; filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+            animation: floatFlower 7s ease-in-out infinite alternate;
         }
         .floral-decor img { width: 100%; height: auto; object-fit: contain; }
         
         @keyframes floatFlower {
             0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(-12px) rotate(3deg); }
         }
 
-        /* Posiciones de las flores */
-        .floral-top-left { top: -40px; left: -40px; transform: rotate(-10deg); }
-        .floral-bottom-right { bottom: -40px; right: -40px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
-        .floral-middle-right { top: 40%; right: -60px; transform: rotate(45deg); width: 180px; }
-        .floral-bottom-left { bottom: 8%; left: -40px; transform: rotate(-30deg) scaleX(-1); width: 190px; }
+        /* Posiciones */
+        .floral-top-left { top: -45px; left: -45px; transform: rotate(-10deg); }
+        .floral-bottom-right { bottom: -45px; right: -45px; transform: rotate(15deg) scaleX(-1) scaleY(-1); }
+        .floral-middle-right { top: 40%; right: -70px; transform: rotate(45deg); width: 200px; }
+        .floral-bottom-left { bottom: 6%; left: -50px; transform: rotate(-30deg) scaleX(-1); width: 220px; }
 
-        /* Clases de Animación Dinámica */
+        /* --- CLASES DE ANIMACIÓN --- */
         .anim-element { opacity: 0; transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; z-index: 3; }
         .anim-fade-up { transform: translateY(40px); }
         .anim-fade-up.in-view { opacity: 1; transform: translateY(0); }
@@ -187,119 +187,137 @@
         .delay-3 { transition-delay: 0.4s; } .delay-4 { transition-delay: 0.55s; }
         .delay-5 { transition-delay: 0.7s; }
 
-        /* --- TIPOGRAFÍA Y ESTILOS LIMPIOS --- */
+        /* --- TIPOGRAFÍA ESTANDARIZADA (Limpia y Legible) --- */
         .tag-line { 
-            font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; 
+            font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 300; 
             letter-spacing: 5px; text-transform: uppercase; color: var(--text-white); 
-            margin-bottom: 15px; opacity: 0.9;
+            margin-bottom: 15px; opacity: 0.95;
         }
 
-        /* Composición del XV Años superpuesto (Ajustado) */
+        /* Hero Composición Perfecta */
         .hero-title-container {
-            display: flex; flex-direction: column; align-items: center;
-            margin: 30px 0 20px 0; width: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin: 40px 0 30px 0; width: 100%; position: relative;
         }
         .hero-xv {
-            font-family: 'Cinzel', serif; font-size: 160px; font-weight: 400; line-height: 1; 
+            font-family: 'Cinzel', serif; font-size: 150px; font-weight: 400; line-height: 0.9; 
             color: var(--text-white); letter-spacing: -2px; z-index: 2;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .hero-anos {
             font-family: 'Great Vibes', cursive; font-size: 120px; color: var(--text-white); 
-            margin-top: -65px; z-index: 3; /* Margen negativo controlado en lugar de position absolute */
-            text-shadow: 0 4px 15px rgba(205, 142, 149, 0.8); 
-            padding: 0 20px; /* Evita recortes laterales */
+            margin-top: -50px; z-index: 3; /* Margen negativo calculado */
+            text-shadow: 0 4px 15px rgba(205, 142, 149, 0.9); /* Sombra para resaltar sobre las letras blancas */
+            padding: 0 20px;
         }
         
         .main-name {
-            font-family: 'Cinzel', serif; font-size: 42px; font-weight: 500; 
-            letter-spacing: 6px; margin: 40px 0 10px 0; color: var(--text-white);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.1); line-height: 1.2;
+            font-family: 'Cinzel', serif; font-size: 55px; font-weight: 500; 
+            letter-spacing: 6px; margin: 30px 0 10px 0; color: var(--text-white);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.15); line-height: 1.2;
         }
 
-        .title-script { font-family: 'Great Vibes', cursive; font-size: 70px; font-weight: 400; margin: 15px 0; padding: 0 20px; }
-        .subtitle-serif { font-family: 'Cinzel', serif; font-size: 38px; font-weight: 400; letter-spacing: 2px; padding: 0 15px; }
+        .title-script { font-family: 'Great Vibes', cursive; font-size: 80px; font-weight: 400; margin: 15px 0; padding: 0 10px; }
+        
+        .subtitle-serif { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 400; letter-spacing: 2px; padding: 0 15px; }
 
-        .body-text { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; max-width: 500px; margin: 0 auto; padding: 0 15px; }
+        .body-text { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; max-width: 500px; margin: 0 auto; padding: 0 15px; }
         
         .date-container {
-            display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0;
-            font-family: 'Montserrat', sans-serif; font-weight: 300; text-transform: uppercase; letter-spacing: 4px; font-size: 13px;
+            display: flex; align-items: center; justify-content: center; gap: 20px; margin: 40px 0;
+            font-family: 'Montserrat', sans-serif; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; font-size: 14px;
         }
-        .date-number { font-family: 'Cinzel', serif; font-size: 55px; font-weight: 400; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); padding: 0 25px; line-height: 1; }
+        .date-number { font-family: 'Cinzel', serif; font-size: 60px; font-weight: 400; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); padding: 0 30px; line-height: 1; }
 
-        /* --- FLORITURAS ELEGANTES (Separadores) --- */
-        .flourish-divider {
-            width: 100%; display: flex; justify-content: center; margin: 60px 0;
+        /* --- DIVISORES PREMIUM (Minimalistas) --- */
+        .elegant-divider {
+            display: flex; align-items: center; justify-content: center;
+            width: 70%; max-width: 350px; margin: 60px auto; opacity: 0.8;
         }
-        .flourish-svg {
-            width: 180px; fill: var(--border-light);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+        .elegant-divider::before, .elegant-divider::after {
+            content: ''; flex: 1; border-bottom: 1px solid var(--border-light);
+        }
+        .elegant-divider::before { margin-right: 20px; }
+        .elegant-divider::after { margin-left: 20px; }
+        .divider-icon { color: var(--border-light); font-size: 14px; }
+        .divider-icon.heart { font-size: 18px; }
+
+        /* --- PROFUNDIDAD: PANELES GLASSMORPHISM SUTILES --- */
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25); border-radius: 4px;
+            padding: 50px 30px; width: 100%; max-width: 550px; margin: 30px auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
-        /* --- ÍCONOS CUSTOM PNG (Mantiene color original y resalta hermoso) --- */
+        /* --- ÍCONOS CUSTOM PNG --- */
         .section-icon-img {
-            height: 65px; width: auto; margin-bottom: 20px; object-fit: contain;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+            height: 70px; width: auto; margin-bottom: 25px; object-fit: contain;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
         }
         .dresscode-icon-img {
-            height: 55px; width: auto; margin-bottom: 15px; object-fit: contain;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+            height: 60px; width: auto; margin-bottom: 15px; object-fit: contain;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
         }
 
         /* --- BOTONES ELEGANTES --- */
         .btn-outline {
             display: inline-flex; align-items: center; justify-content: center;
             background: transparent; color: var(--text-white);
-            padding: 16px 40px; font-family: 'Montserrat', sans-serif; font-size: 11px;
+            padding: 18px 45px; font-family: 'Montserrat', sans-serif; font-size: 13px;
             font-weight: 400; letter-spacing: 5px; text-transform: uppercase;
-            text-decoration: none; border: 1px solid var(--text-white); border-radius: 0;
-            transition: all 0.4s ease; margin-top: 25px; cursor: pointer;
+            text-decoration: none; border: 1px solid var(--text-white); border-radius: 2px;
+            transition: all 0.4s ease; margin-top: 30px; cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .btn-outline:hover { background: var(--text-white); color: var(--bg-dusty-rose); transform: translateY(-3px); }
+        .btn-outline:hover { background: var(--text-white); color: var(--bg-dusty-rose); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .btn-outline svg { fill: currentColor; width: 18px; height: 18px; margin-right: 10px; }
 
-        /* --- FORMULARIOS RSVP LIMPIOS --- */
-        .form-section {
-            width: 100%; max-width: 450px; margin: 40px auto;
-        }
+        /* --- FORMULARIOS RSVP --- */
         .form-group { width: 100%; margin-bottom: 20px; position: relative; }
         .input-line {
-            width: 100%; padding: 18px 15px; background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid var(--border-light); border-radius: 0; color: var(--text-white);
-            font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; outline: none;
-            text-align: center; transition: all 0.4s;
+            width: 100%; padding: 20px 15px; background: rgba(255, 255, 255, 0.08); 
+            border: 1px solid var(--border-light); border-radius: 2px; color: var(--text-white);
+            font-family: 'Montserrat', sans-serif; font-size: 16px; /* 16px Evita zoom en iOS */
+            font-weight: 300; outline: none; text-align: center; transition: all 0.4s;
         }
-        .input-line:focus { border-color: var(--text-white); background: rgba(255,255,255,0.1); }
+        .input-line:focus { border-color: var(--text-white); background: rgba(255,255,255,0.15); }
         .input-line::placeholder { color: rgba(255, 255, 255, 0.7); font-style: normal; }
-        textarea.input-line { resize: vertical; min-height: 100px; }
+        textarea.input-line { resize: vertical; min-height: 120px; }
         select.input-line { appearance: none; text-align-last: center; cursor: pointer; }
         select.input-line option { color: #000; background: #FFF; } 
 
         /* Pie de página */
         .invytia-footer {
-            width: 100%; padding: 40px 20px 20px 20px; text-align: center; 
+            width: 100%; padding: 50px 20px 20px 20px; text-align: center; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .invytia-footer .designed-by { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 6px; text-transform: uppercase; font-weight: 300; margin-bottom: 8px; opacity: 0.6; }
-        .invytia-footer .brand-name { font-family: 'Cinzel', serif; font-size: 18px; letter-spacing: 6px; font-weight: 500; color: var(--text-white); opacity: 0.8;}
+        .invytia-footer .designed-by { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 6px; text-transform: uppercase; font-weight: 300; margin-bottom: 8px; opacity: 0.7; }
+        .invytia-footer .brand-name { font-family: 'Cinzel', serif; font-size: 20px; letter-spacing: 6px; font-weight: 500; color: var(--text-white); opacity: 0.9;}
 
+        /* Responsividad Móvil Perfeccionada */
         @media (max-width: 480px) {
-            #main-invitation { padding: 10px; }
-            .outer-frame { padding: 3px; }
-            .inner-frame { padding: 50px 10px; } /* Menos padding en móviles para ganar espacio */
-            .floral-decor { width: 140px; }
+            #main-invitation { padding: 15px; }
+            .outer-frame { padding: 4px; }
+            .inner-frame { padding: 60px 10px; }
+            .floral-decor { width: 160px; }
             
-            .hero-xv { font-size: 130px; }
-            .hero-anos { font-size: 95px; margin-top: -50px; }
-            .main-name { font-size: 32px; letter-spacing: 4px; }
-            .subtitle-serif { font-size: 30px; }
-            .title-script { font-size: 60px; }
+            /* Ajustes Tipográficos Móvil */
+            .tag-line { font-size: 13px; }
+            .body-text { font-size: 15px; }
+            .title-script { font-size: 65px; }
+            .subtitle-serif { font-size: 34px; }
+            .main-name { font-size: 38px; letter-spacing: 4px; line-height: 1.3; }
+            
+            .hero-xv { font-size: 120px; }
+            .hero-anos { font-size: 95px; margin-top: -45px; }
             
             .date-container { flex-direction: column; gap: 10px; }
-            .date-number { border-left: none; border-right: none; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 15px 0; width: 100%; }
+            .date-number { border-left: none; border-right: none; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 15px 0; width: 100%; font-size: 50px; }
             
+            .glass-card { padding: 40px 15px; }
+            .btn-outline { padding: 16px 30px; font-size: 12px; width: 100%; }
+
             .envelope { width: 300px; height: 195px; }
             .envelope::before, .envelope::after { border-left-width: 150px; border-top-width: 97px; border-bottom-width: 97px; }
             .front-flap { border-left-width: 150px; border-right-width: 150px; border-top-width: 105px; }
@@ -332,7 +350,7 @@
         <div class="hint-text">Toca para descubrir</div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL (Diseño Limpio) -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main id="main-invitation">
         
         <div class="outer-frame">
@@ -352,12 +370,7 @@
                     <div class="hero-anos">Años</div>
                 </div>
 
-                <div class="flourish-divider anim-element anim-fade-up delay-3" style="margin: 20px 0;">
-                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-3"><span class="divider-icon heart">♡</span></div>
                 
                 <h2 class="anim-element anim-zoom delay-4 main-name">SARA REBECA</h2>
 
@@ -367,173 +380,137 @@
                     <span>Nov. 2026</span>
                 </div>
 
-                <div class="anim-element anim-fade-up delay-5 tag-line" style="font-size: 11px;">6:00 PM</div>
+                <div class="anim-element anim-fade-up delay-5 tag-line">6:00 PM</div>
                 
-                <p class="anim-element anim-fade-up delay-5 body-text" style="text-transform: uppercase; font-size: 12px; letter-spacing: 3px; margin-top: 10px;">
+                <p class="anim-element anim-fade-up delay-5 body-text" style="text-transform: uppercase; letter-spacing: 3px; margin-top: 15px;">
                     Hacienda San Fernando<br>Ciudad de México
                 </p>
 
-                <div class="anim-element anim-zoom delay-5 title-script" style="margin-top: 40px;">¡Te espero!</div>
+                <div class="anim-element anim-zoom delay-5 title-script" style="margin-top: 50px;">¡Te espero!</div>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
 
 
                 <!-- PADRES Y PADRINOS -->
-                <div class="anim-element anim-fade-up delay-1 title-script" style="font-size: 45px;">Con la bendición de Dios</div>
-                <div class="anim-element anim-fade-up delay-2 body-text" style="margin-bottom: 25px;">y el amor de mis padres</div>
+                <div class="anim-element anim-fade-up delay-1 title-script">Con la bendición de Dios</div>
+                <div class="anim-element anim-fade-up delay-2 body-text" style="margin-bottom: 30px;">y el amor de mis padres</div>
                 <div class="anim-element anim-zoom delay-3 subtitle-serif">Isaac Lozano</div>
-                <div class="anim-element anim-zoom delay-3 subtitle-serif" style="margin-bottom: 30px;">Verónica Barajas</div>
+                <div class="anim-element anim-zoom delay-3 subtitle-serif" style="margin-bottom: 40px;">Verónica Barajas</div>
                 
-                <div class="anim-element anim-fade-up delay-4 body-text" style="margin-bottom: 25px;">junto con mis queridos padrinos</div>
+                <div class="anim-element anim-fade-up delay-4 body-text" style="margin-bottom: 30px;">junto con mis queridos padrinos</div>
                 <div class="anim-element anim-zoom delay-5 subtitle-serif">Ignacio Sánchez</div>
                 <div class="anim-element anim-zoom delay-5 subtitle-serif">Melisa Mireles</div>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
 
 
-                <!-- CEREMONIA -->
-                <div class="anim-element anim-zoom delay-1">
+                <!-- CEREMONIA CON GLASS CARD -->
+                <div class="anim-element anim-zoom delay-1 glass-card">
                     <img src="assets/iconoiglesia.png" alt="Ceremonia" class="section-icon-img">
-                </div>
-                <div class="anim-element anim-fade-up delay-2 tag-line">Ceremonia Religiosa</div>
-                <div class="anim-element anim-zoom delay-3 subtitle-serif" style="font-size: 32px; margin-bottom: 10px;">Hacienda San Fernando</div>
-                <p class="anim-element anim-fade-up delay-4 body-text">Av San Fernando 106, Tlalpan, CDMX</p>
-                <div class="anim-element anim-fade-up delay-5 tag-line" style="margin-top: 15px;">18:00 hrs</div>
-                
-                <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="anim-element anim-fade-up delay-5 btn-outline">Cómo Llegar</a>
-
-
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
+                    <div class="tag-line">Ceremonia Religiosa</div>
+                    <div class="subtitle-serif" style="margin-bottom: 15px;">Hacienda San Fernando</div>
+                    <p class="body-text">Av San Fernando 106, Tlalpan, CDMX</p>
+                    <div class="tag-line" style="margin-top: 20px;">18:00 hrs</div>
+                    <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="btn-outline">Cómo Llegar</a>
                 </div>
 
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon heart">♡</span></div>
 
-                <!-- RECEPCIÓN -->
-                <div class="anim-element anim-zoom delay-1">
+
+                <!-- RECEPCIÓN CON GLASS CARD -->
+                <div class="anim-element anim-zoom delay-1 glass-card">
                     <img src="assets/iconosalon.png" alt="Recepción" class="section-icon-img">
+                    <div class="tag-line">Recepción & Fiesta</div>
+                    <div class="subtitle-serif" style="margin-bottom: 15px;">Hacienda San Fernando</div>
+                    <p class="body-text">Av San Fernando 106, Tlalpan, CDMX</p>
+                    <div class="tag-line" style="margin-top: 20px;">19:00 hrs</div>
+                    <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="btn-outline">Cómo Llegar</a>
                 </div>
-                <div class="anim-element anim-fade-up delay-2 tag-line">Recepción</div>
-                <div class="anim-element anim-zoom delay-3 subtitle-serif" style="font-size: 32px; margin-bottom: 10px;">Hacienda San Fernando</div>
-                <p class="anim-element anim-fade-up delay-4 body-text">Av San Fernando 106, Tlalpan, CDMX</p>
-                <div class="anim-element anim-fade-up delay-5 tag-line" style="margin-top: 15px;">19:00 hrs</div>
-                
-                <a href="https://maps.app.goo.gl/V1ALnPQ6LPpRt37XA?g_st=com.google.maps.preview.copy" target="_blank" class="anim-element anim-fade-up delay-5 btn-outline">Cómo Llegar</a>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
 
 
                 <!-- DRESS CODE -->
                 <div class="anim-element anim-fade-up delay-1 tag-line">Dress Code</div>
-                <div class="anim-element anim-zoom delay-2 title-script" style="font-size: 75px; margin: 0;">Black Tie</div>
-                <div class="anim-element anim-fade-up delay-3 body-text" style="font-style: italic; margin-bottom: 40px;">Etiqueta rigurosa</div>
+                <div class="anim-element anim-zoom delay-2 title-script" style="font-size: 85px; margin: 0;">Black Tie</div>
+                <div class="anim-element anim-fade-up delay-3 body-text" style="font-style: italic; margin-bottom: 50px;">Etiqueta rigurosa</div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 40px;">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 40px; margin-bottom: 40px;">
                     <!-- Damas -->
                     <div class="anim-element anim-fade-up delay-4" style="text-align: center; width: 100%;">
                         <img src="assets/iconovestido.png" alt="Damas" class="dresscode-icon-img">
-                        <div class="tag-line" style="font-size: 11px;">DAMAS</div>
+                        <div class="tag-line">DAMAS</div>
                         <p class="body-text">Vestido largo de noche</p>
                     </div>
                     
                     <!-- Caballeros -->
                     <div class="anim-element anim-fade-up delay-5" style="text-align: center; width: 100%;">
                         <img src="assets/iconomoño.png" alt="Caballeros" class="dresscode-icon-img">
-                        <div class="tag-line" style="font-size: 11px;">CABALLEROS</div>
+                        <div class="tag-line">CABALLEROS</div>
                         <p class="body-text">Smoking negro, camisa formal, moño negro.</p>
                     </div>
                 </div>
 
-                <div class="anim-element anim-zoom delay-5" style="margin-top: 50px; padding: 20px; border: 1px dashed var(--border-light); max-width: 400px;">
-                    <div class="tag-line" style="font-size: 11px;">Exclusivo Quinceañera</div>
-                    <p class="body-text" style="font-size: 12px;">El color rosa está reservado de manera exclusiva para la quinceañera.</p>
+                <div class="anim-element anim-zoom delay-5 glass-card" style="padding: 30px 20px; border-style: dashed;">
+                    <div class="tag-line" style="font-size: 12px;">Exclusivo Quinceañera</div>
+                    <p class="body-text">El color rosa en todas sus tonalidades está reservado de manera exclusiva para la quinceañera.</p>
                 </div>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
 
 
                 <!-- PLAYLIST Y GALERÍA -->
                 <div class="anim-element anim-fade-up delay-1 tag-line">Nuestra Música</div>
-                <div class="anim-element anim-zoom delay-2 subtitle-serif" style="font-size: 32px; margin-bottom: 15px;">La Playlist</div>
-                <p class="anim-element anim-fade-up delay-3 body-text" style="margin-bottom: 30px;">Agrega tus canciones favoritas.</p>
-                <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 400px; position: relative; z-index: 4;">
-                    <iframe data-testid="embed-iframe" style="border-radius:0; border: 1px solid var(--border-light);" src="https://open.spotify.com/embed/playlist/12Dw89XiWepF4u7OPFa9uC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div class="anim-element anim-zoom delay-2 subtitle-serif" style="margin-bottom: 20px;">La Playlist</div>
+                <p class="anim-element anim-fade-up delay-3 body-text" style="margin-bottom: 35px;">Agrega tus canciones favoritas para que no paremos de bailar.</p>
+                
+                <div class="anim-element anim-zoom delay-4 glass-card" style="padding: 20px; max-width: 450px;">
+                    <iframe data-testid="embed-iframe" style="border-radius:4px; border: 1px solid var(--border-light);" src="https://open.spotify.com/embed/playlist/12Dw89XiWepF4u7OPFa9uC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg" style="width: 140px;">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon heart">♡</span></div>
 
                 <div class="anim-element anim-fade-up delay-1 tag-line">Captura el Momento</div>
-                <div class="anim-element anim-zoom delay-2 subtitle-serif" style="font-size: 32px; margin-bottom: 15px;">Galería en Vivo</div>
-                <p class="anim-element anim-fade-up delay-3 body-text">Comparte conmigo todas las fotos de hoy.</p>
+                <div class="anim-element anim-zoom delay-2 subtitle-serif" style="margin-bottom: 20px;">Galería en Vivo</div>
+                <p class="anim-element anim-fade-up delay-3 body-text">Comparte conmigo todas las fotos y videos de hoy.</p>
                 <a href="https://drive.google.com/drive/folders/1VEQcqbNiQm_IMAySezv380PLMESiXkPu?usp=sharing" target="_blank" class="anim-element anim-fade-up delay-4 btn-outline">Subir Fotos</a>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
+
+
+                <!-- AVISO ADULTOS Y PASES -->
+                <div class="anim-element anim-zoom delay-1" style="margin-bottom: 50px;">
+                    <div class="tag-line" style="font-size: 13px;">Nota importante</div>
+                    <div class="subtitle-serif" style="margin: 15px 0;">Solo Adultos</div>
+                    <p class="body-text">La recepción será un evento exclusivo para adultos. Agradecemos infinitamente su comprensión.</p>
                 </div>
-
-
-                <!-- AVISO ADULTOS -->
-                <div class="anim-element anim-zoom delay-1" style="margin-bottom: 40px;">
-                    <div class="tag-line" style="font-size: 11px;">Nota importante</div>
-                    <div class="subtitle-serif" style="font-size: 26px; margin: 10px 0;">Solo Adultos</div>
-                    <p class="body-text" style="font-size: 13px;">La recepción será un evento exclusivo para adultos. Agradecemos su comprensión.</p>
-                </div>
-
 
                 <!-- UI DEL PASE DE INVYTIA (Se activa con JS) -->
-                <div id="pases-display-section" class="anim-element anim-zoom delay-1" style="display: none; width: 100%; margin: 40px 0; padding: 40px 20px; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
-                    <div class="tag-line" style="font-size: 11px; margin-bottom: 5px;">Esta invitación es para</div>
-                    <div class="subtitle-serif" style="font-size: 26px; margin-bottom: 20px;">Ustedes</div>
-                    <div class="tag-line" style="font-size: 10px; margin-bottom: 0;">Hemos reservado especialmente</div>
+                <div id="pases-display-section" class="anim-element anim-zoom delay-1 glass-card" style="display: none; border-color: var(--gold-shine);">
+                    <div class="tag-line" style="margin-bottom: 10px;">Esta invitación es para</div>
+                    <div class="subtitle-serif" style="margin-bottom: 25px;">Ustedes</div>
                     
-                    <div id="display-pases-number" class="subtitle-serif" style="font-size: 70px; line-height: 1; margin: 10px 0;">2</div>
+                    <div class="elegant-divider" style="margin: 25px auto; width: 40%;"><span class="divider-icon">♦</span></div>
+
+                    <div class="tag-line" style="font-size: 12px; margin-bottom: 0;">Hemos reservado especialmente</div>
+                    <div id="display-pases-number" class="subtitle-serif" style="font-size: 80px; line-height: 1; margin: 15px 0;">2</div>
                     <div id="display-pases-label" class="tag-line" style="font-size: 16px;">LUGARES</div>
                     
-                    <p class="body-text" style="font-size: 12px; margin-top: 15px;">Agradecemos respetar el número de lugares asignados.</p>
+                    <p class="body-text" style="font-size: 14px; margin-top: 25px;">Agradecemos respetar el número de lugares asignados.</p>
                 </div>
 
 
                 <!-- RSVP -->
                 <div class="anim-element anim-fade-up delay-2 tag-line">Asistencia</div>
-                <div class="anim-element anim-zoom delay-3 subtitle-serif" style="font-size: 38px;">Confirmación</div>
-                <p class="anim-element anim-fade-up delay-4 body-text" style="margin-top: 10px;">Favor de confirmar antes del<br>01 de noviembre de 2026.</p>
+                <div class="anim-element anim-zoom delay-3 subtitle-serif">Confirmación</div>
+                <p class="anim-element anim-fade-up delay-4 body-text" style="margin-top: 15px;">Favor de confirmar antes del<br>01 de noviembre de 2026.</p>
 
-                <div class="anim-element anim-zoom delay-5 form-section">
+                <div class="anim-element anim-zoom delay-5 glass-card" style="padding: 40px 20px;">
                     <div class="form-group">
                         <input type="text" id="rsvp-name" class="input-line" placeholder="Tu nombre y apellido">
                     </div>
@@ -560,19 +537,14 @@
                 </div>
 
 
-                <div class="flourish-divider anim-element anim-fade-up delay-1">
-                    <svg viewBox="0 0 250 30" class="flourish-svg">
-                        <path d="M125,15 C110,5 90,15 70,15 C45,15 25,5 5,15 C25,25 45,15 70,15 C90,15 110,25 125,15 Z M125,15 C140,5 160,15 180,15 C205,15 225,5 245,15 C225,25 205,15 180,15 C160,15 140,25 125,15 Z"/>
-                        <circle cx="125" cy="15" r="3.5" fill="var(--text-white)"/>
-                    </svg>
-                </div>
+                <div class="elegant-divider anim-element anim-fade-up delay-1"><span class="divider-icon">♦</span></div>
 
 
                 <!-- LIBRO DE FIRMAS -->
                 <div class="anim-element anim-fade-up delay-1 tag-line">Libro de Firmas</div>
-                <div class="anim-element anim-zoom delay-2 subtitle-serif" style="font-size: 38px;">Muro de Deseos</div>
+                <div class="anim-element anim-zoom delay-2 subtitle-serif">Muro de Deseos</div>
                 
-                <div class="anim-element anim-zoom delay-3 form-section">
+                <div class="anim-element anim-zoom delay-3 glass-card" style="padding: 40px 20px;">
                     <div class="form-group">
                         <input type="text" id="wish-name" class="input-line" placeholder="De parte de...">
                     </div>
@@ -582,8 +554,8 @@
                     <button onclick="sendWish()" class="btn-outline" style="width: 100%;">Enviar Mensaje</button>
                 </div>
 
-                <!-- FOOTER DENTRO DEL MARCO -->
-                <footer class="invytia-footer anim-element anim-fade-up delay-3" style="margin-top: 60px;">
+                <!-- FOOTER -->
+                <footer class="invytia-footer anim-element anim-fade-up delay-3">
                     <div class="designed-by">Diseño mágico exclusivo por</div>
                     <div class="brand-name">INVYTIA</div>
                 </footer>
@@ -612,35 +584,43 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
-        // --- SISTEMA DE POLVO DE HADAS Y GLITTER DORADO ---
+        // --- SISTEMA DE POLVO DE HADAS Y GLITTER DORADO CONTINUO ---
         function createFairyDust() {
-            // Polvo de hadas del sobre (se apaga luego de un rato)
+            // Polvo de hadas del sobre (se apaga para no saturar)
             const container = document.getElementById('fairy-dust');
-            const particleCount = 35; 
+            const particleCount = 40; 
             for (let i = 0; i < particleCount; i++) {
                 let particle = document.createElement('div');
                 particle.classList.add('sparkle');
-                let size = Math.random() * 5 + 2;
+                let size = Math.random() * 6 + 3;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDelay = `${Math.random() * 4}s`;
-                particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                particle.style.animationDelay = `${Math.random() * 3}s`;
+                particle.style.animationDuration = `${Math.random() * 5 + 3}s`;
                 container.appendChild(particle);
             }
             
-            setTimeout(() => { container.style.opacity = '0'; container.style.transition = 'opacity 2s ease'; }, 5000);
-            setTimeout(() => { container.style.display = 'none'; }, 7000);
+            setTimeout(() => { container.style.opacity = '0'; container.style.transition = 'opacity 2.5s ease'; }, 6000);
+            setTimeout(() => { container.style.display = 'none'; }, 9000);
 
-            // Glitter constante en el fondo de la invitación
+            // Glitter Mágico Permanente (Fondo Principal)
             const mainContainer = document.querySelector('.inner-frame');
-            for (let i = 0; i < 40; i++) {
+            const glitterCount = window.innerWidth < 600 ? 30 : 60; // Menos partículas en móvil
+            
+            for (let i = 0; i < glitterCount; i++) {
                 let glitter = document.createElement('div');
                 glitter.classList.add('glitter-particle');
+                
+                // Variación de tamaño para que se vea orgánico
+                let gSize = Math.random() * 4 + 2; 
+                glitter.style.width = `${gSize}px`;
+                glitter.style.height = `${gSize}px`;
+                
                 glitter.style.left = Math.random() * 100 + '%';
                 glitter.style.top = Math.random() * 100 + '%';
-                glitter.style.animationDelay = Math.random() * 6 + 's';
-                glitter.style.animationDuration = Math.random() * 3 + 2 + 's';
+                glitter.style.animationDelay = Math.random() * 5 + 's';
+                glitter.style.animationDuration = Math.random() * 4 + 3 + 's';
                 mainContainer.appendChild(glitter);
             }
         }

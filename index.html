@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años - Sara</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Paleta Girly & Princesa Vibrante */
@@ -106,7 +106,6 @@
         .wax-seal-css {
             width: 100%; height: 100%;
             border-radius: 48% 52% 55% 45% / 54% 48% 52% 46%;
-            /* Rosa intenso y vibrante para el sello */
             background: radial-gradient(circle at 30% 30%, #FF8FA8 0%, #E65A7A 40%, #A83C56 100%);
             box-shadow: 
                 3px 6px 12px rgba(0,0,0,0.4), 
@@ -168,28 +167,32 @@
         .bg-gradient-cream { background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-blush) 100%); }
         .bg-gradient-deep { background: linear-gradient(135deg, var(--bg-deep-rose) 0%, var(--accent-dark) 100%); color: #FFF !important; }
 
-        /* --- EFECTO ORO LÍQUIDO (GOLD FOIL) --- */
-        .text-gold {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: foilShine 4s linear infinite;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        /* --- COLORES DE TÍTULOS DINÁMICOS Y GRUESOS --- */
+        .text-title-pink {
+            color: var(--accent-dark);
         }
-        @keyframes foilShine { to { background-position: 200% center; } }
+        .text-title-white {
+            color: #FFFFFF;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
         /* Tipografías Girly */
         .tag-line { font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 8px; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 15px; font-weight: 700; }
         .tag-line-light { color: var(--gold-shine); }
 
-        .title-script { font-family: 'Great Vibes', cursive; font-size: 165px; line-height: 1; padding: 20px 0; margin: 10px 0; }
+        .title-script { font-family: 'Great Vibes', cursive; font-size: 165px; line-height: 1; padding: 20px 0; margin: 10px 0; font-weight: 400; }
 
         .body-serif { font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.6; color: var(--text-dark); font-style: italic; max-width: 650px; padding: 0 20px; font-weight: 600; }
         .body-serif-light { color: #FFF; }
 
-        /* Títulos secundarios en dorado */
-        .info-data { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; line-height: 1.2; }
+        /* Títulos secundarios (ahora más gruesos) */
+        .info-data { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 52px; 
+            font-weight: 800; /* Incrementado para mayor grosor */
+            line-height: 1.2; 
+            -webkit-text-stroke: 0.5px currentColor; /* Efecto sutil para engrosar el tipo de letra */
+        }
         
         /* Separadores Dorados */
         .divider-sparkle { width: 100%; height: 2px; background: linear-gradient(to right, transparent, var(--accent-gold), transparent); margin: 30px 0; position: relative; }
@@ -219,7 +222,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,255,255,0.2);
         }
 
-        .calendar-month { font-family: 'Cinzel', serif; font-size: 28px; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 30px; font-weight: 700; }
+        .calendar-month { font-family: 'Cinzel', serif; font-size: 28px; text-transform: uppercase; letter-spacing: 8px; margin-bottom: 30px; font-weight: 800; -webkit-text-stroke: 0.5px currentColor; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; width: 100%; }
         .cal-header { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800; color: var(--accent-dark); padding-bottom: 12px; }
         .cal-day { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--text-dark); display: flex; justify-content: center; align-items: center; aspect-ratio: 1; transition: all 0.3s; }
@@ -316,7 +319,7 @@
             </div>
             
             <div class="anim-element anim-fade-up delay-2 tag-line">Mis XV Años</div>
-            <h1 class="anim-element anim-zoom delay-3 title-script text-gold">Sara</h1>
+            <h1 class="anim-element anim-zoom delay-3 title-script text-title-pink">Sara</h1>
             
             <div class="divider-sparkle anim-element anim-fade-up delay-4" style="width: 60%; margin: 40px auto;"></div>
             
@@ -328,11 +331,11 @@
         <!-- Fecha y Calendario -->
         <section class="section-block bg-gradient-cream">
             <div class="anim-element anim-fade-up delay-1 tag-line">Celebremos este día el</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 60px;">15 de Noviembre</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 60px;">15 de Noviembre</div>
             <div class="anim-element anim-fade-up delay-3" style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--accent-dark); letter-spacing: 12px; margin-top: 10px; font-weight: 800;">2026</div>
 
             <div class="anim-element anim-zoom delay-4 glass-panel">
-                <div class="calendar-month text-gold">Noviembre</div>
+                <div class="calendar-month text-title-pink">Noviembre</div>
                 <div class="calendar-grid">
                     <div class="cal-header">D</div><div class="cal-header">L</div><div class="cal-header">M</div><div class="cal-header">M</div><div class="cal-header">J</div><div class="cal-header">V</div><div class="cal-header">S</div>
                     <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
@@ -346,24 +349,24 @@
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=XV+A%C3%B1os+de+Sara&dates=20261116T000000Z/20261116T080000Z&details=Acomp%C3%A1%C3%B1anos+a+celebrar+este+d%C3%ADa+m%C3%A1gico&location=Hacienda+de+San+Fernando" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Agendar Evento</a>
         </section>
 
-        <!-- Padres y Padrinos (Contraste Magenta Profundo) -->
+        <!-- Padres y Padrinos (Contraste Magenta Profundo con Textos Blancos) -->
         <section class="section-block bg-gradient-deep">
             <div class="anim-element anim-slide-right delay-1 tag-line tag-line-light">Con la bendición de mis padres</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 46px; margin-top: 15px;">Isaac Lozano Navarro</div>
-            <div class="anim-element anim-zoom delay-3 info-data text-gold" style="font-size: 46px;">Verónica Barajas López</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-white" style="font-size: 46px; margin-top: 15px;">Isaac Lozano Navarro</div>
+            <div class="anim-element anim-zoom delay-3 info-data text-title-white" style="font-size: 46px;">Verónica Barajas López</div>
             
             <div class="divider-sparkle anim-element anim-zoom delay-4" style="background: linear-gradient(to right, transparent, var(--gold-shine), transparent); width: 50%; margin: 60px auto;"></div>
             
             <div class="anim-element anim-slide-left delay-4 tag-line tag-line-light">Y mis padrinos</div>
-            <div class="anim-element anim-zoom delay-5 info-data text-gold" style="font-size: 40px; margin-top: 15px;">Ignacio Sánchez Vertti</div>
-            <div class="anim-element anim-zoom delay-6 info-data text-gold" style="font-size: 40px;">Melisa Mireles</div>
+            <div class="anim-element anim-zoom delay-5 info-data text-title-white" style="font-size: 40px; margin-top: 15px;">Ignacio Sánchez Vertti</div>
+            <div class="anim-element anim-zoom delay-6 info-data text-title-white" style="font-size: 40px;">Melisa Mireles</div>
         </section>
 
         <!-- Locaciones -->
         <section class="section-block bg-gradient-pink">
             <!-- Ceremonia -->
             <div class="anim-element anim-fade-right delay-1 tag-line">Ceremonia</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 52px;">Hacienda San Fernando</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 52px;">Hacienda San Fernando</div>
             <p class="anim-element anim-fade-up delay-3 body-serif" style="font-size: 26px; font-style: normal; margin-top: 10px;">Av San Fernando 106, Tlalpan, CDMX</p>
             <div class="anim-element anim-fade-up delay-4 tag-line" style="font-size: 20px; margin: 25px 0; color: var(--accent-dark); font-weight: 800;">18:00 hrs</div>
             
@@ -376,7 +379,7 @@
 
             <!-- Recepción -->
             <div class="anim-element anim-fade-left delay-1 tag-line">Recepción & Fiesta</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 52px;">Hacienda San Fernando</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 52px;">Hacienda San Fernando</div>
             <p class="anim-element anim-fade-up delay-3 body-serif" style="font-size: 26px; font-style: normal; margin-top: 10px;">Av San Fernando 106, Tlalpan, CDMX</p>
             <div class="anim-element anim-fade-up delay-4 tag-line" style="font-size: 20px; margin: 25px 0; color: var(--accent-dark); font-weight: 800;">19:00 hrs</div>
             
@@ -389,7 +392,7 @@
         <!-- Dress Code y Reglas Especiales -->
         <section class="section-block bg-gradient-cream">
             <div class="anim-element anim-fade-up delay-1 tag-line">Código de Vestimenta</div>
-            <div class="anim-element anim-zoom delay-2 text-gold" style="font-family: 'Cinzel', serif; font-size: 65px; font-weight: 700; letter-spacing: 12px; margin: 15px 0;">
+            <div class="anim-element anim-zoom delay-2 text-title-pink" style="font-family: 'Cinzel', serif; font-size: 65px; font-weight: 800; letter-spacing: 12px; margin: 15px 0; -webkit-text-stroke: 1px currentColor;">
                 BLACK TIE
             </div>
             <div class="anim-element anim-fade-up delay-3 body-serif" style="font-size: 24px; font-weight: 700;">(Etiqueta Rigurosa)</div>
@@ -406,7 +409,7 @@
                     </div>
                     <div>
                         <strong style="display:block; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 5px; color: var(--accent-dark); margin-bottom: 8px;">HOMBRES</strong>
-                        <span style="font-size: 26px; color: var(--text-dark); font-family: 'Cormorant Garamond', serif; font-weight: 700;">Smoking negro, camisa formal, moño o corbata negra.</span>
+                        <span style="font-size: 26px; color: var(--text-dark); font-family: 'Cormorant Garamond', serif; font-weight: 700;">Smoking negro, camisa formal, moño negro.</span>
                     </div>
                 </div>
             </div>
@@ -415,7 +418,7 @@
             <div class="anim-element anim-zoom delay-5 glass-panel" style="margin-top: 20px; padding: 40px 30px; background: rgba(255, 255, 255, 0.85); border-color: var(--accent-gold);">
                 <div style="margin-bottom: 25px;">
                     <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; fill: var(--accent-gold); margin-bottom: 10px;"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--accent-dark); font-size: 20px; letter-spacing: 3px; margin-bottom: 10px;">Exclusivo Quinceañera</h3>
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--accent-dark); font-size: 20px; letter-spacing: 3px; font-weight: 800; margin-bottom: 10px;">Exclusivo Quinceañera</h3>
                     <p class="body-serif" style="font-size: 24px; color: var(--text-dark);">El color rosa en todas sus tonalidades está reservado de manera exclusiva para la quinceañera.</p>
                 </div>
             </div>
@@ -424,7 +427,7 @@
         <!-- Playlist Spotify & Galería -->
         <section class="section-block bg-gradient-pink">
             <div class="anim-element anim-slide-right delay-1 tag-line">Nuestra Música</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 50px;">Armemos la playlist</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 50px;">Armemos la playlist</div>
             <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 20px auto 40px auto; font-size: 28px;">
                 Agrega tus canciones favoritas para que esta noche no paremos de bailar.
             </p>
@@ -438,7 +441,7 @@
 
             <!-- Galería en Vivo -->
             <div class="anim-element anim-slide-left delay-1 tag-line">Captura el Momento</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 50px;">Galería en Vivo</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 50px;">Galería en Vivo</div>
             
             <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 25px auto 40px auto; font-size: 28px;">
                 Comparte conmigo todas las fotos y videos que tomes durante la celebración subiéndolos a nuestro álbum digital.
@@ -455,12 +458,12 @@
                 <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--accent-dark); margin-bottom: 10px;">
                     <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.28 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.09C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.28 18.6,15.36 13.45,20.04L12,21.35Z"/>
                 </svg>
-                <h3 class="text-gold" style="font-family: 'Cinzel', serif; font-size: 32px; letter-spacing: 4px; margin-bottom: 15px;">Solo Adultos</h3>
+                <h3 class="text-title-pink" style="font-family: 'Cinzel', serif; font-size: 32px; font-weight: 800; letter-spacing: 4px; margin-bottom: 15px; -webkit-text-stroke: 0.5px currentColor;">Solo Adultos</h3>
                 <p class="body-serif" style="font-size: 24px; color: var(--text-dark);">Para que todos podamos disfrutar al máximo de esta gran velada, les informamos que la recepción será un evento exclusivo para adultos. ¡Agradecemos infinitamente su comprensión!</p>
             </div>
 
             <div class="anim-element anim-fade-up delay-2 tag-line">Asistencia</div>
-            <div class="anim-element anim-zoom delay-3 info-data text-gold" style="font-size: 52px;">Confirmar RSVP</div>
+            <div class="anim-element anim-zoom delay-3 info-data text-title-pink" style="font-size: 52px;">Confirmar RSVP</div>
             <p class="anim-element anim-fade-up delay-4 body-serif" style="margin: 15px auto 30px auto; font-size: 26px;">
                 Por favor, confirma tu asistencia para considerarte en esta noche mágica.
             </p>
@@ -489,7 +492,7 @@
             <div class="divider-sparkle anim-element anim-zoom delay-1" style="width: 40%; margin: 60px auto;"></div>
 
             <div class="anim-element anim-fade-up delay-1 tag-line">Libro de Firmas</div>
-            <div class="anim-element anim-zoom delay-2 info-data text-gold" style="font-size: 50px;">Muro de los Deseos</div>
+            <div class="anim-element anim-zoom delay-2 info-data text-title-pink" style="font-size: 50px;">Muro de los Deseos</div>
             
             <div class="anim-element anim-zoom delay-3 glass-panel" style="margin-top: 35px; padding: 50px 30px;">
                 <div class="form-group">
@@ -504,7 +507,7 @@
 
         <!-- Despedida -->
         <section class="section-block bg-gradient-pink" style="padding: 120px 20px 180px 20px; justify-content: center;">
-            <div class="anim-element anim-zoom delay-1 title-script text-gold" style="font-size: 170px; line-height: 0.8;">Te espero</div>
+            <div class="anim-element anim-zoom delay-1 title-script text-title-pink" style="font-size: 170px; line-height: 0.8;">Te espero</div>
             
             <div class="anim-element anim-fade-up delay-3" style="margin-top: 50px;">
                 <svg viewBox="0 0 24 24" style="width: 70px; height: 70px; fill: var(--accent-gold); filter: drop-shadow(0 0 20px rgba(255, 223, 115, 0.8));">
